@@ -24,6 +24,7 @@ def generate : IO SpanId := do
   let value ← IO.rand 1 UInt64.size.pred  -- Start from 1 to avoid invalid
   pure { value := value.toUInt64 }
 
+-- TODO: Replace with Staple.Hex.hexCharToNat after staple release
 /-- Convert a single hex character to its numeric value -/
 private def hexCharToNat (c : Char) : Option Nat :=
   if '0' ≤ c && c ≤ '9' then some (c.toNat - '0'.toNat)
@@ -41,6 +42,7 @@ def fromHex (s : String) : Option SpanId := do
       pure (acc * 16 + digit)
     some { value := result.toUInt64 }
 
+-- TODO: Replace with Staple.Hex.nibbleToHexChar after staple release
 /-- Convert a nibble (0-15) to a lowercase hex character -/
 private def nibbleToHexChar (n : Nat) : Char :=
   if n < 10 then Char.ofNat ('0'.toNat + n)

@@ -32,6 +32,7 @@ def generate : IO TraceId := do
   else
     pure { high := high.toUInt64, low := low.toUInt64 }
 
+-- TODO: Replace with Staple.Hex.hexCharToNat after staple release
 /-- Convert a single hex character to its numeric value -/
 private def hexCharToNat (c : Char) : Option Nat :=
   if '0' ≤ c && c ≤ '9' then some (c.toNat - '0'.toNat)
@@ -59,6 +60,7 @@ def fromHex (s : String) : Option TraceId := do
     let low ← hexToUInt64 lowStr
     some { high, low }
 
+-- TODO: Replace with Staple.Hex.nibbleToHexChar after staple release
 /-- Convert a nibble (0-15) to a lowercase hex character -/
 private def nibbleToHexChar (n : Nat) : Char :=
   if n < 10 then Char.ofNat ('0'.toNat + n)
