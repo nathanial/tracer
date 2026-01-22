@@ -201,7 +201,7 @@ test "Console.formatSpan produces output" := do
   let output := Export.Console.formatSpan span
   shouldSatisfy (output.containsSubstr "test-span") "output should contain span name"
 
-#generate_tests
+
 
 -- Main entry point
 def main : IO UInt32 := do
